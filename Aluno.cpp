@@ -4,26 +4,28 @@
 #include <iostream>
 #include "DadosPessoa.cpp"
 
+using namespace std;
+
 class Aluno : public DadosPessoa {
 private:
-    std::string escola;
-    std::string idMatricula;
-    std::string contacto;
+    string escola;
+    string idMatricula;
+    string contacto;
 
 public:
-    Aluno(const std::string& nome, const std::string& numBI, int anoNascimento,
-          const std::string& escola, const std::string& idMatricula, const std::string& contacto)
+    Aluno(const string& nome, const string& numBI, int anoNascimento,
+          const string& escola, const string& idMatricula, const string& contacto)
         : DadosPessoa(nome, numBI, anoNascimento), escola(escola), idMatricula(idMatricula), contacto(contacto) {}
 
-    std::string getEscola() const { return escola; }
-    std::string getIdMatricula() const { return idMatricula; }
-    std::string getContacto() const { return contacto; }
+    string getEscola() const { return escola; }
+    string getIdMatricula() const { return idMatricula; }
+    string getContacto() const { return contacto; }
 
-    void setEscola(const std::string& escola) { this->escola = escola; }
-    void setIdMatricula(const std::string& idMatricula) { this->idMatricula = idMatricula; }
-    void setContacto(const std::string& contacto) { this->contacto = contacto; }
+    void setEscola(const string& escola) { this->escola = escola; }
+    void setIdMatricula(const string& idMatricula) { this->idMatricula = idMatricula; }
+    void setContacto(const string& contacto) { this->contacto = contacto; }
 
-    std::string infoAluno() const {
+    string infoAluno() const {
         return "Escola: " + getEscola() + ", Matricula: " + getIdMatricula() + ", Contacto: " + getContacto();
     }
 };
