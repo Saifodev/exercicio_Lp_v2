@@ -5,15 +5,17 @@
 #include "ContaCartao.cpp"
 #include "Aluno.cpp"
 
+using namespace std;
+
 class ContaAluno : public ContaCartao, public Aluno {
 private:
     float desconto_lev;
     float bonos_dep;
 
 public:
-    ContaAluno(const std::string& nome, const std::string& numBI, int anoNascimento,
-               const std::string& escola, const std::string& idMatricula, const std::string& contacto,
-               const std::string& numConta, bool estado, float saldo, float desconto_lev, float bonos_dep)
+    ContaAluno(const string& nome, const string& numBI, int anoNascimento,
+               const string& escola, const string& idMatricula, const string& contacto,
+               const string& numConta, bool estado, float saldo, float desconto_lev, float bonos_dep)
         : ContaCartao(nome, numBI, anoNascimento, numConta, estado, saldo),
           Aluno(nome, numBI, anoNascimento, escola, idMatricula, contacto),
           desconto_lev(desconto_lev), bonos_dep(bonos_dep) {}
@@ -28,18 +30,17 @@ public:
         return "Desconto: " + to_string(getDescontoLev()) + ", Bonos: " + to_string(getBonosDep());
     }
 
-    void levantarDinheiro(float montante) {
-        float montanteFinal = montante * (1.0 - desconto_lev); // Aplicando desconto
-        ContaCartao::levantarDinheiro(montanteFinal);
+    bool levantarDinheiro(float montante) {
+        float montanteFinal = montante * (1.0 - getDescontoLev()); // Aplicando desconto
+        return ContaCartao::levantarDinheiro(montanteFinal);
     }
 
-    void depositarDinheiro(float montante) {
-        float montanteFinal = montante * (1.0 + bonos_dep); // Aplicando bônus
-        ContaCartao::depositarDinheiro(montanteFinal);
+    bool depositarDinheiro(float montante) {
+       float montanteFinal = montante * (1.0 + getBonosDep()); // Aplicando bônus
+        return ContaCartao::depositarDinheiro(montanteFinal);
     }
 
-    void transferirDinheiro(float montante, ContaAluno& contaDest) {
-        ContaCartao::transferirDinheiro(montante, contaDest);
+    bool transferirDinheiro(float montante, ContaCartao& contaDest) {
+        return ContaCartao::transferirDinheiro(montante, contaDest);
     }
-
 };
