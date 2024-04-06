@@ -3,51 +3,53 @@
 #include <limits>
 #include <sstream>
 
-class ValidadorEntrada {
-public:
-    static int validarInteiro(const std::string& mensagem) {
+using namespace std;
+
+namespace ValidadorEntrada {
+
+    int validarInt(const string& mensagem) {
         int valor;
-        std::string entrada;
+        string entrada;
         while (true) {
-            std::cout << mensagem;
-            std::getline(std::cin, entrada);
-            std::stringstream ss(entrada);
-            if (ss >> valor && ss.eof()) {
+            cout << mensagem;
+            getline(cin, entrada);
+            stringstream ss(entrada);
+            if (ss >> valor && ss.eof() && ss) {
                 break; // Entrada válida
             } else {
-                std::cout << "Entrada inválida! Digite um número inteiro válido." << std::endl;
+                cout << "Entrada invalida! Digite um numero inteiro valido." << endl;
             }
         }
         return valor;
     }
 
-    static float validarFlutuante(const std::string& mensagem) {
+    float validarFloat(const string& mensagem) {
         float valor;
-        std::string entrada;
+        string entrada;
         while (true) {
-            std::cout << mensagem;
-            std::getline(std::cin, entrada);
-            std::stringstream ss(entrada);
+            cout << mensagem;
+            getline(cin, entrada);
+            stringstream ss(entrada);
             if (ss >> valor && ss.eof()) {
                 break; // Entrada válida
             } else {
-                std::cout << "Entrada inválida! Digite um número de ponto flutuante válido." << std::endl;
+                cout << "Entrada invalida! Digite um float valido." << endl;
             }
         }
         return valor;
     }
 
-    static std::string validarString(const std::string& mensagem) {
-        std::string entrada;
+    string validarString(const string& mensagem) {
+        string entrada;
         while (true) {
-            std::cout << mensagem;
-            std::getline(std::cin, entrada);
+            cout << mensagem;
+            getline(cin, entrada);
             if (!entrada.empty()) {
                 break; // Entrada válida
             } else {
-                std::cout << "Entrada inválida! Digite uma string válida." << std::endl;
+                cout << "Entrada invalida! Digite uma string valida." << endl;
             }
         }
         return entrada;
     }
-};
+}
