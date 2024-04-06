@@ -13,8 +13,11 @@ private:
     int anoNascimento;
 
 public:
-    DadosPessoa(const string& nome, const string& numBI, int anoNascimento)
-        : nome(nome), numBI(numBI), anoNascimento(anoNascimento) {}
+    DadosPessoa(const string& nome, const string& numBI, int anoNascimento) {
+        this->nome = nome;
+        this->numBI = numBI;
+        this->anoNascimento = anoNascimento;
+    }
 
     string getNome() const { return nome; }
     string getNumBI() const { return numBI; }
